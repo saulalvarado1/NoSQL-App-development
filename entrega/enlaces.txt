@@ -2,9 +2,9 @@ PROYECTO GRUPAL - Construir y desplegar una app con base de datos NoSQL
 Base de datos: Cloud Firestore (Google Cloud / Firebase)
 Nube: Firebase Hosting   |   Automatización: GitHub Actions
 
-Repositorio público:   <URL_DEL_REPOSITORIO>
+Repositorio público:   https://github.com/saulalvarado1/NoSQL-App-development
 App en producción:     https://<TU_PROYECTO>.web.app
-Ejecución del pipeline: <URL_DEL_REPOSITORIO>/actions
+Ejecución del pipeline: https://github.com/saulalvarado1/NoSQL-App-development/actions
 
 Artículos (uno por integrante):
 - <Integrante 1>: <URL_ARTICULO>

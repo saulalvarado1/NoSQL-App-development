@@ -6,7 +6,7 @@ tags: nosql, firebase, firestore, githubactions
 cover_image: 
 ---
 
-> **Repositorio:** `<URL_DEL_REPOSITORIO>`
+> **Repositorio:** https://github.com/saulalvarado1/NoSQL-App-development
 > **App en vivo:** `https://<TU_PROYECTO>.web.app`
 > **Video (≤ 5 min):** `<URL_DEL_VIDEO>`
 
