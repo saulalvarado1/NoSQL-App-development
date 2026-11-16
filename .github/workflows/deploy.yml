@@ -52,6 +52,13 @@ jobs:
         env:
           SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       - name: Desplegar con Firebase CLI
-        run: firebase deploy --only hosting,firestore --project "${{ vars.FIREBASE_PROJECT_ID }}" --non-interactive --force
+        run: |
+          set -o pipefail
+          if ! firebase deploy --only hosting,firestore --project "${{ vars.FIREBASE_PROJECT_ID }}" --non-interactive --force 2>&1 | tee deploy.log; then
+            # Muestra el error de Firebase como anotación visible en el resumen de la ejecución
+            msg=$(grep -iE "error|denied|not found|enable|permission" deploy.log | tail -15 | sed ':a;N;$!ba;s/\n/%0A/g')
+            echo "::error title=firebase deploy::${msg:-Revisa el log del paso}"
+            exit 1
+          fi
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/sa.json
