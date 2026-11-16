@@ -7,7 +7,7 @@ cover_image:
 ---
 
 > **Repositorio:** https://github.com/saulalvarado1/NoSQL-App-development
-> **App en vivo:** `https://<TU_PROYECTO>.web.app`
+> **App en vivo:** https://biblioteca-nosql-upt.web.app
 > **Video (≤ 5 min):** `<URL_DEL_VIDEO>`
 
 ## Introducción
@@ -211,7 +211,7 @@ En cada *pull request* solo corren los tests, así nada roto llega a producción
 
 ## Resultado
 
-La app queda pública en `https://<TU_PROYECTO>.web.app`. Abriéndola en dos navegadores se ve cómo un libro agregado en uno aparece al instante en el otro gracias a `onSnapshot`.
+La app queda pública en https://biblioteca-nosql-upt.web.app. Abriéndola en dos navegadores se ve cómo un libro agregado en uno aparece al instante en el otro gracias a `onSnapshot`.
 
 <!-- Inserta aquí capturas: la app, la consola de Firestore con los documentos y la ejecución del workflow en GitHub Actions. -->
 

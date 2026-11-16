@@ -3,7 +3,7 @@ Base de datos: Cloud Firestore (Google Cloud / Firebase)
 Nube: Firebase Hosting   |   Automatización: GitHub Actions
 
 Repositorio público:   https://github.com/saulalvarado1/NoSQL-App-development
-App en producción:     https://<TU_PROYECTO>.web.app
+App en producción:     https://biblioteca-nosql-upt.web.app
 Ejecución del pipeline: https://github.com/saulalvarado1/NoSQL-App-development/actions
 
 Artículos (uno por integrante):

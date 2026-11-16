@@ -3,7 +3,7 @@
 App web para registrar libros (CRUD en tiempo real) que usa **Cloud Firestore**, una base de datos **NoSQL orientada a documentos**, desplegada en **Firebase Hosting** (Google Cloud) de forma **automática con GitHub Actions** en cada `push` a `main`.
 
 - 💻 Repositorio: https://github.com/saulalvarado1/NoSQL-App-development
-- 🔗 App en producción: `https://<TU_PROYECTO>.web.app`
+- 🔗 App en producción: https://biblioteca-nosql-upt.web.app
 - 📝 Artículo: `<enlace a Dev.to / Medium / Hashnode>`
 - 🎬 Video: `<enlace a YouTube / TikTok>`
 
