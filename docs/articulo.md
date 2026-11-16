@@ -3,7 +3,6 @@ title: "Construye y despliega una app con Cloud Firestore (NoSQL) en Firebase us
 published: false
 description: "Paso a paso: una app web de biblioteca con Cloud Firestore, reglas de seguridad, índices y despliegue automático a Firebase Hosting con CI/CD."
 tags: nosql, firebase, firestore, githubactions
-cover_image: 
 ---
 
 > **Repositorio:** https://github.com/saulalvarado1/NoSQL-App-development
@@ -173,6 +172,9 @@ En el repositorio → *Settings → Secrets and variables → Actions*:
 
 ### El workflow
 
+Versión resumida de [`.github/workflows/deploy.yml`](https://github.com/saulalvarado1/NoSQL-App-development/blob/main/.github/workflows/deploy.yml) (la del repo además valida los secretos y muestra los errores de Firebase en el resumen de la ejecución):
+
+{% raw %}
 ```yaml
 name: CI/CD · Despliegue en Firebase
 on:
@@ -183,24 +185,25 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20 }
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: 22 }
       - run: npm test
   deploy:
     needs: test
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20 }
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: 22 }
       - run: npm install -g firebase-tools
       - run: printf '%s' "$SA" > "$RUNNER_TEMP/sa.json"
         env: { SA: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" }
       - run: firebase deploy --only hosting,firestore --project "${{ vars.FIREBASE_PROJECT_ID }}" --non-interactive --force
         env: { GOOGLE_APPLICATION_CREDENTIALS: "${{ runner.temp }}/sa.json" }
 ```
+{% endraw %}
 
 En cada `push` a `main`:
 
@@ -214,6 +217,13 @@ En cada *pull request* solo corren los tests, así nada roto llega a producción
 La app queda pública en https://biblioteca-nosql-upt.web.app. Abriéndola en dos navegadores se ve cómo un libro agregado en uno aparece al instante en el otro gracias a `onSnapshot`.
 
 <!-- Inserta aquí capturas: la app, la consola de Firestore con los documentos y la ejecución del workflow en GitHub Actions. -->
+
+## Problemas que encontramos (y cómo los resolvimos)
+
+- **"Seleccionar recurso superior" al crear el proyecto:** pasa con cuentas institucionales, que pertenecen a una organización y suelen bloquear la creación de claves. Usamos una cuenta de Gmail personal.
+- **Firebase exige verificación en 2 pasos (MFA):** tras activarla en la cuenta de Google hay que cerrar sesión y volver a entrar para que la consola la reconozca.
+- **`Failed to authenticate` en GitHub Actions:** el secreto no contenía el JSON completo de la cuenta de servicio. Añadimos un paso que valida el JSON antes de desplegar.
+- **"The query requires an index… currently building":** el índice compuesto tarda unos minutos en construirse después del primer despliegue; luego el filtro por género funciona.
 
 ## Conclusiones
 
