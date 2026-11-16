@@ -52,7 +52,13 @@ function escuchar() {
     ? query(librosRef, where("genero", "==", g), orderBy("creadoEn", "desc"))
     : query(librosRef, orderBy("creadoEn", "desc"));
   // onSnapshot: la lista se actualiza en tiempo real en todos los navegadores abiertos.
-  cancelar = onSnapshot(q, pintar, (err) => (errores.textContent = err.message));
+  cancelar = onSnapshot(q, pintar, (err) => {
+    lista.replaceChildren();
+    contador.textContent = "";
+    errores.textContent = err.code === "failed-precondition"
+      ? "El índice de Firestore para este filtro aún se está creando. Intenta de nuevo en unos minutos."
+      : "Error al consultar Firestore: " + err.message;
+  });
 }
 filtro.addEventListener("change", escuchar);
 
