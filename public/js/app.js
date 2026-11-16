@@ -57,6 +57,7 @@ function escuchar() {
 filtro.addEventListener("change", escuchar);
 
 function pintar(snap) {
+  errores.textContent = "";
   contador.textContent = `${snap.size} libro(s)`;
   lista.replaceChildren();
   if (snap.empty) {
