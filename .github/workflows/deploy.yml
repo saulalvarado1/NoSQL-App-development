@@ -11,10 +11,10 @@ jobs:
     name: Pruebas
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
       - run: npm test
 
   deploy:
@@ -26,10 +26,25 @@ jobs:
       name: produccion
       url: https://${{ vars.FIREBASE_PROJECT_ID }}.web.app
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Verificar configuración del repositorio
+        env:
+          SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+        run: |
+          falta=0
+          if [ -z "$SA" ]; then
+            echo "::error::Falta el secreto FIREBASE_SERVICE_ACCOUNT (Settings → Secrets and variables → Actions → Secrets)."
+            falta=1
+          fi
+          if [ -z "$PROJECT_ID" ]; then
+            echo "::error::Falta la variable FIREBASE_PROJECT_ID (Settings → Secrets and variables → Actions → Variables)."
+            falta=1
+          fi
+          exit $falta
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 22
       - name: Instalar Firebase CLI
         run: npm install -g firebase-tools
       - name: Credenciales de la cuenta de servicio
