@@ -1,0 +1,37 @@
+:root {
+  --bg: #f5f3ef;
+  --card: #ffffff;
+  --text: #1f2328;
+  --muted: #6b7280;
+  --accent: #f57c00;
+  --ok: #2e7d32;
+  --danger: #c62828;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); }
+header, main, footer { max-width: 860px; margin: 0 auto; padding: 1rem; }
+header h1 { margin-bottom: .25rem; }
+header p { color: var(--muted); margin-top: 0; }
+.card { background: var(--card); border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem; box-shadow: 0 1px 3px rgb(0 0 0 / .08); }
+.card h2 { margin-top: 0; font-size: 1.15rem; }
+form { display: grid; grid-template-columns: 2fr 1.5fr 1fr .8fr auto; gap: .5rem; }
+input, select, button { font: inherit; padding: .55rem .7rem; border: 1px solid #d0d7de; border-radius: 8px; }
+button { background: var(--accent); color: #fff; border: none; cursor: pointer; font-weight: 600; }
+button:disabled { opacity: .6; }
+#errores { color: var(--danger); min-height: 1.2em; margin: .5rem 0 0; font-size: .9rem; }
+.barra { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.barra h2 { margin: 0; }
+small { color: var(--muted); font-weight: normal; }
+ul { list-style: none; padding: 0; margin: 1rem 0 0; }
+li { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .75rem 0; border-top: 1px solid #eee; }
+li.vacio { color: var(--muted); justify-content: center; }
+.info { display: flex; flex-direction: column; }
+.meta { color: var(--muted); font-size: .9rem; }
+li.leido strong { text-decoration: line-through; color: var(--muted); }
+.acciones { display: flex; gap: .4rem; }
+.toggle { background: #e8eef5; color: var(--text); }
+li.leido .toggle { background: #e6f4ea; color: var(--ok); }
+.borrar { background: transparent; color: var(--danger); }
+footer { color: var(--muted); font-size: .85rem; text-align: center; }
+@media (max-width: 680px) { form { grid-template-columns: 1fr 1fr; } form button { grid-column: span 2; } }

@@ -1,0 +1,13 @@
+{
+  "name": "biblioteca-nosql-firestore",
+  "version": "1.0.0",
+  "description": "App web con Cloud Firestore desplegada en Firebase Hosting mediante GitHub Actions",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "dev": "firebase emulators:start --project demo-biblioteca",
+    "deploy": "firebase deploy --only hosting,firestore"
+  },
+  "license": "MIT"
+}

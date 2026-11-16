@@ -1,0 +1,7 @@
+node_modules/
+.firebase/
+*-debug.log
+firebase-debug.*.log
+*service-account*.json
+sa.json
+entrega/*.zip

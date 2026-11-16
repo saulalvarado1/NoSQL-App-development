@@ -1,0 +1,13 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "libros",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "genero", "order": "ASCENDING" },
+        { "fieldPath": "creadoEn", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
