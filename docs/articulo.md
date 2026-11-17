@@ -174,7 +174,6 @@ En el repositorio → *Settings → Secrets and variables → Actions*:
 
 Versión resumida de [`.github/workflows/deploy.yml`](https://github.com/saulalvarado1/NoSQL-App-development/blob/main/.github/workflows/deploy.yml) (la del repo además valida los secretos y muestra los errores de Firebase en el resumen de la ejecución):
 
-{% raw %}
 ```yaml
 name: CI/CD · Despliegue en Firebase
 on:
@@ -203,7 +202,6 @@ jobs:
       - run: firebase deploy --only hosting,firestore --project "${{ vars.FIREBASE_PROJECT_ID }}" --non-interactive --force
         env: { GOOGLE_APPLICATION_CREDENTIALS: "${{ runner.temp }}/sa.json" }
 ```
-{% endraw %}
 
 En cada `push` a `main`:
 
